@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "945727513545",
+    "firebase_url": "https://fir-beer.firebaseio.com",
+    "project_id": "fir-beer",
+    "storage_bucket": "fir-beer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945727513545:android:62ad8f17ae960de2",
+        "android_client_info": {
+          "package_name": "com.livessolutions.firebasebeer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "945727513545-2qheh0n59vtc7kg77fqo6vf8k0g05thv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.livessolutions.firebasebeer",
+            "certificate_hash": "80261a9def940a6972d822c225c04b00056c4909"
+          }
+        },
+        {
+          "client_id": "945727513545-17fufc3rsmgei0515ihlrtqobqkqm1sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQdwR9dyZ-Ja94zVpqCqBDAC3X3vQDQLI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "945727513545-17fufc3rsmgei0515ihlrtqobqkqm1sb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
