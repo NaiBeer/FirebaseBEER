@@ -53,7 +53,7 @@ public class RegisterFragment extends Fragment {
 
 //        Setup Firebase
         firebaseAuth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance();
+        // databaseReference = FirebaseDatabase.getInstance();
 
 
 
@@ -163,10 +163,28 @@ public class RegisterFragment extends Fragment {
     private void saveNameDisplayTofirebase() {
 
 //        Get UID of Firebase
-       // UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
-       // firebaseUser.updateProfile()
+            // UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
+            // firebaseUser.updateProfile()
+
+        firebaseUser = firebaseAuth.getCurrentUser();
+
+        showLog();
+
+
+
 
     }// saveNameDisplayTofirebase
+
+    private void showLog() {
+
+        String tag = "26NovV1";
+        Log.d(tag, "UID == > " + firebaseUser.getUid());
+        Log.d(tag, "Email == > " + firebaseUser.getEmail());
+
+
+
+
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
