@@ -20,6 +20,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 import com.livessolutions.firebasebeer.MainActivity;
 import com.livessolutions.firebasebeer.R;
 import com.livessolutions.firebasebeer.utility.MyAlertDialog;
@@ -35,6 +37,9 @@ public class RegisterFragment extends Fragment {
     private String nameString, emailString, passwordString;
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
+    private FirebaseUser firebaseUser;
+    private FirebaseDatabase databaseReference;
+
 
 
 
@@ -45,6 +50,13 @@ public class RegisterFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+//        Setup Firebase
+        firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance();
+
+
+
 
         //        Create Toolbar
         createToolbar();
@@ -107,7 +119,7 @@ public class RegisterFragment extends Fragment {
         progressDialog.setTitle("Please Wait ...");
         progressDialog.show();
 
-        firebaseAuth = FirebaseAuth.getInstance();
+
         firebaseAuth.createUserWithEmailAndPassword(emailString, passwordString)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -117,6 +129,12 @@ public class RegisterFragment extends Fragment {
 
                         if (task.isSuccessful()) {
                             // Successs
+
+                            saveNameDisplayTofirebase();
+
+
+
+
                             Toast.makeText(getActivity(),"Update Firebase Success",
                                     Toast.LENGTH_SHORT).show();
                             getActivity().getSupportFragmentManager()
@@ -141,6 +159,14 @@ public class RegisterFragment extends Fragment {
 
 
     } // UpdateFirebase
+
+    private void saveNameDisplayTofirebase() {
+
+//        Get UID of Firebase
+       // UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
+       // firebaseUser.updateProfile()
+
+    }// saveNameDisplayTofirebase
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
