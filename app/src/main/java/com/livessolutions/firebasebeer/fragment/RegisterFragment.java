@@ -15,6 +15,7 @@ import android.widget.EditText;
 
 import com.livessolutions.firebasebeer.MainActivity;
 import com.livessolutions.firebasebeer.R;
+import com.livessolutions.firebasebeer.utility.MyAlertDialog;
 
 /**
  * Created by Admins on 11/25/17.
@@ -70,6 +71,16 @@ public class RegisterFragment extends Fragment {
         emailString = emailEditText.getText().toString().trim();
         passwordString = passwordEditText.getText().toString().trim();
 
+
+//        Check Space
+        if (nameString.isEmpty() || emailString.isEmpty() || passwordString.isEmpty()) {
+//                Have Space
+            MyAlertDialog myAlertDialog = new MyAlertDialog(getActivity());
+            myAlertDialog.myNormalDialog("Have Space",
+                    getString(R.string.Sub_register));
+        } else {
+//                  No Space
+        }
 
 
     } // checkSpace
