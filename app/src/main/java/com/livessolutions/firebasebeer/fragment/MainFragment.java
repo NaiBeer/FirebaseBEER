@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.livessolutions.firebasebeer.R;
 import com.livessolutions.firebasebeer.utility.MyAlertDialog;
 
@@ -95,6 +97,8 @@ public class MainFragment extends Fragment {
                             Toast.makeText(getActivity(),"Welcome",
                                     Toast.LENGTH_SHORT).show();
 
+                            processMoveToService();
+
 
                         } else {
 
@@ -107,6 +111,26 @@ public class MainFragment extends Fragment {
                     }
                 });
     } //check EmailAnpass
+
+    private void processMoveToService() {
+
+        //find UID of Current Login
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        String strUID = firebaseUser.getUid();
+        Log.d("26NovV4", "strUID == " + strUID);
+
+        //Replace Fragement and Put Value
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.contentMainFragment,
+                        ServiceFragment.serviceInstance(strUID)).commit();
+
+
+
+
+
+    } // processMoveToService
 
     private void registerController() {
         TextView textView = getView().findViewById(R.id.txtNewRegister);

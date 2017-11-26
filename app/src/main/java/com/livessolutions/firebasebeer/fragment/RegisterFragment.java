@@ -21,10 +21,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.livessolutions.firebasebeer.MainActivity;
 import com.livessolutions.firebasebeer.R;
 import com.livessolutions.firebasebeer.utility.MyAlertDialog;
+import com.livessolutions.firebasebeer.utility.UserModel;
 
 /**
  * Created by Admins on 11/25/17.
@@ -38,7 +40,7 @@ public class RegisterFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
     private FirebaseUser firebaseUser;
-    private FirebaseDatabase databaseReference;
+    private DatabaseReference databaseReference;
 
 
 
@@ -119,6 +121,8 @@ public class RegisterFragment extends Fragment {
         progressDialog.setTitle("Please Wait ...");
         progressDialog.show();
 
+        Log.d("26NOVV2", "Email == " + emailString);
+        Log.d("26NOVV2", "Password == " + passwordString);
 
         firebaseAuth.createUserWithEmailAndPassword(emailString, passwordString)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -169,6 +173,15 @@ public class RegisterFragment extends Fragment {
         firebaseUser = firebaseAuth.getCurrentUser();
 
         showLog();
+
+        String strUserUID = firebaseUser.getUid();
+
+//        Create Field on Firebase
+        databaseReference = FirebaseDatabase.getInstance()
+                .getReference().child("Users");
+
+        UserModel userModel = new UserModel(strUserUID, nameString);
+        databaseReference.child(strUserUID).setValue(userModel);
 
 
 
