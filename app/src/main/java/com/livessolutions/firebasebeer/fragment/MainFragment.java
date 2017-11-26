@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.livessolutions.firebasebeer.R;
@@ -15,6 +17,9 @@ import com.livessolutions.firebasebeer.R;
  */
 
 public class MainFragment extends Fragment {
+
+    // Explicit
+    private String emailString, passwordString;
 
 
     @Override
@@ -26,7 +31,32 @@ public class MainFragment extends Fragment {
         registerController();
 
 
+//        Login Controller
+        loginController();
+
+
     } // Main Method onActivityCreated
+
+    private void loginController() {
+        Button button = getView().findViewById(R.id.btnLogin);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+//                Initial View
+//
+         EditText emailEditText = getView().findViewById(R.id.edtMail);
+         EditText passwordEditText = getView().findViewById(R.id.edtPassword);
+
+//         Get Value From Edit Text
+
+            emailString = emailEditText.getText().toString().trim();
+            passwordString = passwordEditText.getText().toString().trim();
+            
+
+            }
+        });
+    }
 
     private void registerController() {
         TextView textView = getView().findViewById(R.id.txtNewRegister);
